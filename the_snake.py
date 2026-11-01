@@ -6,48 +6,30 @@ import pygame
 Point = Tuple[int, int]
 Color = Tuple[int, int, int]
 
-
-# Константы для размеров поля и сетки:
 SCREEN_WIDTH: int = 640
 SCREEN_HEIGHT: int = 480
 GRID_SIZE: int = 20
 GRID_WIDTH: int = SCREEN_WIDTH // GRID_SIZE
 GRID_HEIGHT: int = SCREEN_HEIGHT // GRID_SIZE
 
-# Направления движения:
 UP: Point = (0, -1)
 DOWN: Point = (0, 1)
 LEFT: Point = (-1, 0)
 RIGHT: Point = (1, 0)
 
-# Цвет фона - черный:
 BOARD_BACKGROUND_COLOR: Color = (0, 0, 0)
-
-# Цвет границы ячейки
 BORDER_COLOR: Color = (93, 216, 228)
-
-# Цвет яблока
 APPLE_COLOR: Color = (255, 0, 0)
-
-# Цвет змейки
 SNAKE_COLOR: Color = (0, 255, 0)
-
 DEFAULT_COLOR: Color = (255, 255, 255)
 
-# Скорость движения змейки:
 SPEED: int = 20
 
-# Настройка игрового окна:
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
-
-# Заголовок окна игрового поля:
 pygame.display.set_caption('Змейка')
-
-# Настройка времени:
 clock = pygame.time.Clock()
 
 
-# Тут опишите все классы игры.
 class GameObject:
     """Базовый класс для всех игровых объектов."""
 
@@ -153,11 +135,12 @@ def handle_keys(game_object) -> None:
 
 def main() -> None:
     """Основной цикл игры."""
-    # Инициализация PyGame:
     pygame.init()
-    # Тут нужно создать экземпляры классов.
+
     snake = Snake()
     apple = Apple()
+
+    screen.fill(BOARD_BACKGROUND_COLOR)
 
     while True:
         clock.tick(SPEED)
@@ -173,7 +156,6 @@ def main() -> None:
             snake.length += 1
             apple.randomize_position()
 
-        screen.fill(BOARD_BACKGROUND_COLOR)
         snake.draw()
         apple.draw()
         pygame.display.update()
@@ -181,3 +163,4 @@ def main() -> None:
 
 if __name__ == '__main__':
     main()
+    
